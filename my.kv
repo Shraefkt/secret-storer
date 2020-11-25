@@ -1,0 +1,134 @@
+WindowManager:
+    CreateAccountWindow:
+    SecretNoteWindow:
+
+<CreateAccountWindow>:
+    name:"create"
+    usn:username
+    pswd:password
+    FloatLayout:
+        size: root.width, root.height
+        cols : 1
+        Label:
+            size_hint: 0.5,0.12
+            pos_hint: {"x":0, "top":0.8}
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text:"Username:"
+        TextInput:
+            id:username
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 14**4
+            pos_hint: {"x":0.5, "top":0.8}
+        Label:
+            text:"Password:"
+            size_hint: 0.5,0.12
+            pos_hint: {"x":0, "top":0.8-0.13}
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        TextInput:
+            id:password
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 14**4
+            pos_hint: {"x":0.5, "top":0.8-0.13}
+            size_hint: 0.4, 0.12
+        Button:
+            pos_hint:{"x":0.3,"y":0.25}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 16**4
+            text: "Already have an Account? Log In"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.15
+            text: "Create"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+<LoginWindow>:
+    name:"login"
+    usn:username
+    pswd:password
+    FloatLayout:
+        size: root.width, root.height
+        cols : 1
+        Label:
+            size_hint: 0.5,0.12
+            pos_hint: {"x":0, "top":0.8}
+            font_size: (root.width**2 + root.height**2) / 14**4
+            text:"Username:"
+        TextInput:
+            id:username
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 14**4
+            pos_hint: {"x":0.5, "top":0.8}
+        Label:
+            text:"Password:"
+            size_hint: 0.5,0.12
+            pos_hint: {"x":0, "top":0.8-0.13}
+            font_size: (root.width**2 + root.height**2) / 14**4
+
+        TextInput:
+            id:password
+            multiline: False
+            font_size: (root.width**2 + root.height**2) / 14**4
+            pos_hint: {"x":0.5, "top":0.8-0.13}
+            size_hint: 0.4, 0.12
+        Button:
+            pos_hint:{"x":0.2,"y":0.05}
+            size_hint: 0.6, 0.15
+            text: "Login"
+            font_size: (root.width**2 + root.height**2) / 14**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+        Button:
+            pos_hint:{"x":0.3,"y":0.25}
+            size_hint: 0.4, 0.1
+            font_size: (root.width**2 + root.height**2) / 16**4
+            text: "No Account? Create an account"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.create()
+
+<SecretNoteWindow>:
+    s:secret
+    FloatLayout:
+        size: root.width, root.height
+        cols:1
+        Label:
+            text:"My secret note:"
+            pos_hint:{"x":0.4,"top":0.9}
+            size_hint: 0.2, 0.2
+            font_size: (root.width**2 + root.height**2) / 14**4
+        TextInput:
+            id : secret
+            pos_hint:{"x":0.2,"top":0.7}
+            size_hint: 0.6, 0.6
+            font_size: (root.width**2 + root.height**2) / 16**4
+        Button:
+            text : "logout"
+            pos_hint:{"x":0,"top":1}
+            size_hint: 0.1, 0.1
+            font_size: (root.width**2 + root.height**2) / 15**4
+            on_release:
+                root.manager.transition.direction = "right"
+                root.login()
+        Button:
+            text : "view secret"
+            pos_hint:{"x":0.1,"top":1}
+            size_hint: 0.2, 0.1
+            font_size: (root.width**2 + root.height**2) / 15**4
+            on_release:
+                root.r()
+        Button:
+            text : "save edits"
+            pos_hint:{"x":0.3,"top":1}
+            size_hint: 0.2, 0.1
+            font_size: (root.width**2 + root.height**2) / 15**4
+            on_release:
+                root.save_edits()
